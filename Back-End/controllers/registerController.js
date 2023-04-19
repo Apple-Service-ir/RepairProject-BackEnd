@@ -1,8 +1,9 @@
 const User = require("../models/User");
 
 const post = async (req, res) => {
-  const [firstName, lastName, city, phone, password] = req.body;
+  const [firstName, lastName, city, phone, password] = req.body; // Data come from request
 
+  // Create new user
   await User.create({
     firstName,
     lastName,
@@ -13,10 +14,11 @@ const post = async (req, res) => {
     password: await User.encryptPassword(password),
   })
     .then(() => {
-      res.send(true);
+      res.send(true); // Successfully created
     })
-    .catch(() => {
-      res.send(false);
+    .catch((error) => {
+      console.log(error);
+      res.send(false); // Can't create
     });
 };
 
