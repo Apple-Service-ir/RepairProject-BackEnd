@@ -2,8 +2,7 @@
 
 ## Login API
 
-`URL : /login  |  Method : POST  |  Response : JSON`\
-
+`URL : /login  |  Method : POST  |  Response : JSON`
 > Parameter : action [password & phone]\
 Body : phone & password
 
