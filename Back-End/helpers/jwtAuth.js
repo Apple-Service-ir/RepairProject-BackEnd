@@ -23,7 +23,7 @@ const isUserNotLoggedIn = (req, res, next) => {
   }
 };
 
-module.exports{
-    isUserLoggedIn,
-    isUserNotLoggedIn
-}
+module.exports = {
+  isUserLoggedIn,
+  isUserNotLoggedIn,
+};
