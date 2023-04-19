@@ -33,6 +33,10 @@ const User = db.define("users", {
     type: DataTypes.STRING,
   },
 
+  profile: {
+    type: DataTypes.STRING,
+  },
+
   password: {
     type: DataTypes.STRING,
   },
