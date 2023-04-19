@@ -1,6 +1,6 @@
 # API Documentation
 
-** All API responses have 'ok' and 'err' if response have err **
+* All API responses have 'ok' and 'err' if response have err
 
 ## Login API
 
