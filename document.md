@@ -4,7 +4,7 @@
 
 `URL : /login  |  Method : POST  |  Response : JSON`\
 
->> Parameter : action [password & phone]\
+> Parameter : action [password & phone]\
 Body : phone & password
 
 ### Errors :
