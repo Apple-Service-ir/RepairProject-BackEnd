@@ -1,5 +1,7 @@
 # API Documentation
 
+** All API responses have 'ok' and 'err' if response have err **
+
 ## Login API
 
 `URL : /login  |  Method : POST  |  Response : JSON`
@@ -20,4 +22,5 @@
 
 ### Errors :
 
-1- [500] false -> Can't create user
+1- [500] can't create user\
+2- [200] phone number used
