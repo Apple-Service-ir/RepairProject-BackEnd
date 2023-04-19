@@ -18,7 +18,7 @@ const post = async (req, res) => {
     })
     .catch((error) => {
       console.log(error);
-      res.send(false); // Can't create
+      res.status(500).send(false); // Can't create
     });
 };
 
