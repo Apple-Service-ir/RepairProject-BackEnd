@@ -5,7 +5,7 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
-const defaultChecker = require("./helpers/defaultChecker")(); // Checking default things like database tables
+require("./helpers/defaultChecker")(); // Checking default things like database tables
 
 const app = express();
 
