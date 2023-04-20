@@ -24,3 +24,14 @@
 
 1- [500] can't create user\
 2- [200] phone number used
+
+# Roles documentation
+
+- If user have not access, 'ok' will be false and err will be 'access denied'
+
+| Rank Name |  Converted  |
+| :-------: | :---------: |
+|   admin   |    مدیر     |
+| developer | توسعه دهنده |
+| repairman | تعمیر کننده |
+|   user    |    کاربر    |
