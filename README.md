@@ -7,9 +7,9 @@
 
 ## Login API
 
-|                       URL                       | Method | Response Type |           Queries            |        Body        |
-| :---------------------------------------------: | :----: | :-----------: | :--------------------------: | :----------------: |
-| [/login](/Back-End/controllers/loginController) |  POST  |     JSON      | `action (phone or password)` | `phone` `password` |
+|                        URL                         | Method | Response Type |           Queries            |        Body        |
+| :------------------------------------------------: | :----: | :-----------: | :--------------------------: | :----------------: |
+| [/login](/Back-End/controllers/loginController.js) |  POST  |     JSON      | `action (phone or password)` | `phone` `password` |
 
 **Errors :**
 
@@ -20,9 +20,9 @@
 
 ## Register API
 
-|                          URL                          | Method | Response Type | Queries |                                                      Body                                                      |
-| :---------------------------------------------------: | :----: | :-----------: | :-----: | :------------------------------------------------------------------------------------------------------------: |
-| [/register](/Back-End/controllers/registerController) |  POST  |     JSON      |    -    | `firstName (string)` `lastName (string)` `city (string)` `phone (string)` `profile (file)` `password (string)` |
+|                           URL                            | Method | Response Type | Queries |                                                      Body                                                      |
+| :------------------------------------------------------: | :----: | :-----------: | :-----: | :------------------------------------------------------------------------------------------------------------: |
+| [/register](/Back-End/controllers/registerController.js) |  POST  |     JSON      |    -    | `firstName (string)` `lastName (string)` `city (string)` `phone (string)` `profile (file)` `password (string)` |
 
 **Errors :**
 
