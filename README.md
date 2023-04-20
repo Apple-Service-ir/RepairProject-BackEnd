@@ -2,6 +2,9 @@
 
 - All API responses have 'ok' and 'err' if response have err
 
+[Login API](https://github.com/Apple-Service-ir/AppleService-RepairProject#login-api)\
+[Register API](https://github.com/Apple-Service-ir/AppleService-RepairProject#register-api)
+
 ## Login API
 
 |  URL   | Method | Response Type |           Queries            |        Body        |
