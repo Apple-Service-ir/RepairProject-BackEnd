@@ -26,7 +26,19 @@
 
 **Errors :**
 
+
 | Code |  Ok   |        Err        |                   Description                    |
 | :--: | :---: | :---------------: | :----------------------------------------------: |
 | 500  | false | can't create user |   Internal error for insert user into database   |
 | 200  | false | phone number used | Found another account with the same phone number |
+
+# Roles documentation
+
+- If user have not access, 'ok' will be false and err will be 'access denied'
+
+| Rank Name |  Converted  |
+| :-------: | :---------: |
+|   admin   |    مدیر     |
+| developer | توسعه دهنده |
+| repairman | تعمیر کننده |
+|   user    |    کاربر    |
