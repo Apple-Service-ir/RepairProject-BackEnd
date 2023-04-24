@@ -12,7 +12,7 @@ const Code = db.define("codes", {
     type: DataTypes.STRING,
   },
 
-  userId: {
+  phone: {
     type: DataTypes.INTEGER,
   },
 });
