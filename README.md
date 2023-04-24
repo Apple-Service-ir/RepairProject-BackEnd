@@ -26,15 +26,3 @@
 
 1- [500] can't create user\
 2- [200] phone number used
-
-## SMS Authentication
-
-`URL : /sms  |  Method : POST  |  Response : JSON`
-
-> Queries : action [generate & submit]\
-> Body : phone & code [if action is submit]
-
-### Errors :
-
-1- [200] code dosen't match
-2- [200] user is not valid
