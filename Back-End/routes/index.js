@@ -8,6 +8,12 @@ Router.post("/register", registerController.post);
 const loginController = require("../controllers/loginController");
 Router.post("/login", loginController.post);
 
+const smsGenerateController = require("../controllers/smsGenerateController");
+Router.post("/sms/generate", smsGenerateController.post);
+
+const smsAuthController = require("../controllers/smsAuthController");
+Router.post("/sms/auth", smsAuthController.post);
+
 const editInformationController = require("../controllers/editInformationController");
 Router.post("/informations/edit", editInformationController.post);
 
