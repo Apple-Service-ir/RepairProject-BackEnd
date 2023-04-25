@@ -14,4 +14,7 @@ Router.post("/sms/generate", smsGenerateController.post);
 const smsAuthController = require("../controllers/smsAuthController");
 Router.post("/sms/auth", smsAuthController.post);
 
+const editInformationController = require("../controllers/editInformationController");
+Router.post("/informations/edit", editInformationController.post);
+
 module.exports = Router;
