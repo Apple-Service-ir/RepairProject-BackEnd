@@ -13,8 +13,13 @@ const post = async (req, res) => {
     if (req.query.action == "generate") {
       const code = authCode.generate(1000, 9999); // Generate random number between 1000 to 9999
       // Insert code into database (with userId)
-      await Code.create({ code, userId: isUserValid.id }).then(() => {
+      await Code.create({ code, userId: isUserValid.id }).then((data) => {
         res.json({ ok: true });
+        setTimeout(async () => {
+          await Code.findByPk(data.id).then(async (fResult) => {
+            if (fResult) await fResult.destroy();
+          });
+        }, 60000);
       });
       // Request for submit auth code
     } else if (req.query.action == "submit") {
