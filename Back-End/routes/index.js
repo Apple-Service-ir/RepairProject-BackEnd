@@ -18,6 +18,6 @@ const editInformationController = require("../controllers/editInformationControl
 Router.post("/informations/edit", editInformationController.post);
 
 const ordersLogController = require("../controllers/ordersLogController");
-Router.post("/orders/log", ordersLogController.post);
+Router.post("/orders/log", isUserLoggedIn, ordersLogController.post);
 
 module.exports = Router;
