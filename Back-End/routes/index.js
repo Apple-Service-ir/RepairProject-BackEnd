@@ -3,10 +3,10 @@ const { isUserLoggedIn, isUserNotLoggedIn } = require("../helpers/jwtAuth");
 const Router = express.Router();
 
 const registerController = require("../controllers/registerController");
-Router.post("/register", registerController.post);
+Router.post("/register", isUserNotLoggedIn, registerController.post);
 
 const loginController = require("../controllers/loginController");
-Router.post("/login", loginController.post);
+Router.post("/login", isUserNotLoggedIn, loginController.post);
 
 const smsGenerateController = require("../controllers/smsGenerateController");
 Router.post("/sms/generate", smsGenerateController.post);
