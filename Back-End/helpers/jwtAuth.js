@@ -44,4 +44,5 @@ const isUserRepairman = (req, res, next) => {
 module.exports = {
   isUserLoggedIn,
   isUserNotLoggedIn,
+  isUserAdmin,
 };

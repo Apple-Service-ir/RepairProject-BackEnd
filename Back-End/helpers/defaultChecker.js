@@ -13,21 +13,19 @@ const defaultChecker = async () => {
   // Check for default admin user
   console.log("Checking default user");
   const requireUser = require("../models/User");
-  await requireUser.findAll().then(async (result) => {
-    if (!result || !result[0]) {
-      // No admin
-      console.log(
-        `--------------------\nDefault user created\n\tUsername : ${config.defaultUser.username}\n\tPassword : ${config.defaultUser.password}\n--------------------`
-      );
-      await requireUser.create({
-        username: config.defaultUser.username,
-        password: await requireUser.encryptPassword(
-          config.defaultUser.password
-        ),
-        userRank: config.defaultUser.userRank,
-      }); // Insert default user using config file
-    }
-  });
+  const result = await requireUser.findAll();
+
+  if (!result || !result[0]) {
+    // No admin
+    console.log(
+      `--------------------\nDefault user created\n\tUsername : ${config.defaultUser.username}\n\tPassword : ${config.defaultUser.password}\n--------------------`
+    );
+    await requireUser.create({
+      username: config.defaultUser.username,
+      password: await requireUser.encryptPassword(config.defaultUser.password),
+      userRank: config.defaultUser.userRank,
+    }); // Insert default user using config file
+  }
 };
 
 module.exports = defaultChecker;

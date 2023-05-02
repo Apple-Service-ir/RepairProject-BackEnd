@@ -7,22 +7,22 @@ const post = async (req, res) => {
   if (isPhoneUsed) return res.send({ ok: false, err: "phone number used" });
 
   // Create new user
-  await User.create({
-    firstName,
-    lastName,
-    role: "user",
-    city,
-    phone,
-    profile: req.file.filename,
-    password: await User.encryptPassword(password),
-  })
-    .then(() => {
-      res.send({ ok: true }); // Successfully created
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(500).send({ ok: false, err: "can't create user" }); // Can't create
+  try {
+    await User.create({
+      firstName,
+      lastName,
+      role: "user",
+      city,
+      phone,
+      profile: req.file.filename,
+      password: await User.encryptPassword(password),
     });
+
+    res.send({ ok: true });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ ok: false, err: "can't create user" }); // Can't create
+  }
 };
 
 module.exports = {
