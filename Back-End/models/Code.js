@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Op } = require("sequelize");
 const db = require("../configs/db");
 
 const Code = db.define("codes", {
@@ -16,5 +16,23 @@ const Code = db.define("codes", {
     type: DataTypes.INTEGER,
   },
 });
+
+Code.findVlidCodes = async (phone) => {
+  const date = new Date();
+  return new Promise(async (resolve, reject) => {
+    try {
+      const findCodes = await Code.findAll({
+        where: {
+          phone,
+          expired_at: { [Op.gt]: date },
+        },
+      });
+
+      return resolve(findCodes);
+    } catch (error) {
+      return reject(error);
+    }
+  });
+};
 
 module.exports = Code;
