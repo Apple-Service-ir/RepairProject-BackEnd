@@ -23,7 +23,26 @@ const isUserNotLoggedIn = (req, res, next) => {
   }
 };
 
+const isUserAdmin = (req, res, next) => {
+  req.user.role && (req.user.role == "admin" || req.user.role == "developer")
+    ? next()
+    : res.status(403).json({ ok: false, err: "access denied" });
+};
+
+const isUserRepairman = (req, res, next) => {
+  if (req.user.role) {
+    if (
+      req.user.role == "admin" ||
+      req.user.role == "developer" ||
+      req.user.role == "repairman"
+    )
+      return next();
+    res.status(403).json({ ok: false, err: "access denied" });
+  }
+};
+
 module.exports = {
   isUserLoggedIn,
   isUserNotLoggedIn,
+  isUserAdmin,
 };

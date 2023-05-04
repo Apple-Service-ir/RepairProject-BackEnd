@@ -2,27 +2,43 @@
 
 - All API responses have 'ok' and 'err' if response have err
 
+[Login API](https://github.com/Apple-Service-ir/AppleService-RepairProject#login-api)\
+[Register API](https://github.com/Apple-Service-ir/AppleService-RepairProject#register-api)
+
 ## Login API
 
-`URL : /login  |  Method : POST  |  Response : JSON`
+|                        URL                         | Method | Response Type |           Queries            |        Body        |
+| :------------------------------------------------: | :----: | :-----------: | :--------------------------: | :----------------: |
+| [/login](/Back-End/controllers/loginController.js) |  POST  |     JSON      | `action (phone or password)` | `phone` `password` |
 
-`If you want to login using SMS verification, add {sms : true} except password`
+**Errors :**
 
-> Queries : action [password & phone]\
-> Body : phone & password
-
-### Errors :
-
-1- [403] user not found\
-2- [403] password is not correct
+| Code |  Ok   |           Err           |                            Description                             |
+| :--: | :---: | :---------------------: | :----------------------------------------------------------------: |
+| 403  | false |     user not found      |             No users in database with this information             |
+| 403  | false | password is not correct | Password is not correct (show username or password is not correct) |
 
 ## Register API
 
-`URL : /register  |  Method : POST  |  Response : JSON`
+|                           URL                            | Method | Response Type | Queries |                                                      Body                                                      |
+| :------------------------------------------------------: | :----: | :-----------: | :-----: | :------------------------------------------------------------------------------------------------------------: |
+| [/register](/Back-End/controllers/registerController.js) |  POST  |     JSON      |    -    | `firstName (string)` `lastName (string)` `city (string)` `phone (string)` `profile (file)` `password (string)` |
 
-> Body : [firstName, lastName, city, phone, profile(picture file), password]
+**Errors :**
 
-### Errors :
 
-1- [500] can't create user\
-2- [200] phone number used
+| Code |  Ok   |        Err        |                   Description                    |
+| :--: | :---: | :---------------: | :----------------------------------------------: |
+| 500  | false | can't create user |   Internal error for insert user into database   |
+| 200  | false | phone number used | Found another account with the same phone number |
+
+# Roles documentation
+
+- If user have not access, 'ok' will be false and err will be 'access denied'
+
+| Rank Name |  Converted  |
+| :-------: | :---------: |
+|   admin   |    مدیر     |
+| developer | توسعه دهنده |
+| repairman | تعمیر کننده |
+|   user    |    کاربر    |
