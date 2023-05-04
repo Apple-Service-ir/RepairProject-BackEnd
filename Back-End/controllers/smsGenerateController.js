@@ -11,12 +11,9 @@ const post = async (req, res) => {
       // TODO : check and send code to user if user requested for code after 60 seconds
     } else {
       const generatedCode = authCode.generate(1111, 9999);
-      await Code.create({ code: generatedCode, phone: req.body.phone }).then(
-        () => {
-          // TODO : Send code to user's phone number
-          return res.send({ ok: true });
-        }
-      );
+      await Code.create({ code: generatedCode, phone: req.body.phone });
+      // TODO : Send code to user's phone number
+      return res.send({ ok: true });
     }
   } else {
     return res.send({ ok: false, err: "phone number is not defined" });

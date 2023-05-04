@@ -13,35 +13,36 @@ const post = async (req, res) => {
     if (req.query.action == "generate") {
       const code = authCode.generate(1000, 9999); // Generate random number between 1000 to 9999
       // Insert code into database (with userId)
-      await Code.create({ code, userId: isUserValid.id }).then((data) => {
-        res.json({ ok: true });
-        setTimeout(async () => {
-          await Code.findByPk(data.id).then(async (fResult) => {
-            if (fResult) await fResult.destroy();
-          });
-        }, 60000);
-      });
+      let data = await Code.create({ code, userId: isUserValid.id });
+
+      res.json({ ok: true });
+
+      setTimeout(async () => {
+        const fResult = await Code.findByPk(data.id);
+
+        if (fResult) await fResult.destroy();
+      }, 60000);
+
       // Request for submit auth code
     } else if (req.query.action == "submit") {
       // Get all codes
-      await Code.findAll({
+      let result = await Code.findAll({
         where: { userId: isUserValid.id },
-      }).then((result) => {
-        let counter = 1;
-        // Check all codes with submited code
-        result.forEach((singleCode) => {
-          counter++;
-          // If code match, create new loop for destroy all codes
-          if (singleCode.code == req.body.code) {
-            result.forEach(async (r) => {
-              await r.destroy();
-            });
-            return res.send({ ok: true });
-            // About async, check next result if it's last result, send err
-          } else if (!result[counter]) {
-            return res.send({ ok: false, err: "code dosen't match" });
-          }
-        });
+      });
+      let counter = 1;
+      // Check all codes with submited code
+      result.forEach((singleCode) => {
+        counter++;
+        // If code match, create new loop for destroy all codes
+        if (singleCode.code == req.body.code) {
+          result.forEach(async (r) => {
+            await r.destroy();
+          });
+          return res.send({ ok: true });
+          // About async, check next result if it's last result, send err
+        } else if (!result[counter]) {
+          return res.send({ ok: false, err: "code dosen't match" });
+        }
       });
     }
   } else {
