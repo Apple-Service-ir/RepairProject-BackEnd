@@ -1,0 +1,18 @@
+{
+    "port" : ,
+    "secret" : "",
+    "databaseName" : "",
+    "databaseHost" : "",
+    "databaseUser" : "",
+    "databasePassword" : "",
+    "defaultUsername" : "",
+    "defaultPassword" : "",
+    "defaultRank" : "",
+    "smsUsername" : "",
+    "smsPassword" : "",
+    "smsOTP" : "",
+    "smsOrder" : "",
+    "smsCancelOrder" : "",
+    "smsTicket" : "",
+    "merchentId" : ""
+}
