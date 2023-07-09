@@ -1,6 +1,5 @@
 const Transaction = require("../../models/Transaction")
 const zarinpal = require("../../helpers/zarinpal")
-const config = require("../../configs/config.json")
 
 const get = async (req, res) => {
     if (!req.body.amount || !req.body.id) return res.status(401).json({ ok: false, err: "paramteres undefined [amount, id]" })
