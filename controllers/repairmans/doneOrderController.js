@@ -16,13 +16,19 @@ const post = async (req, res) => {
     else if (req.body.status)
         return res.status(401).json({ ok: false, err: "unknown status [you can just use payment-done status]" })
 
-    if (status == "done") { // ! Check this section and complete it
-        const allTransactions = await Transaction.findAll({})
-    }
-
     await findOrder.update({ status })
-    await Transaction.create({ price: req.body.price, orderId: findOrder.id, status: "pending" })
+    req.body.price && await Transaction.create({ price: req.body.price, orderId: findOrder.id, status: "pending" })
 
+    if (status == "done") {
+        const allTransactions = await Transaction.findAll({ where: { orderId: findOrder.id } })
+
+        let totalPrice = 0
+
+        allTransactions.forEach(async (transaction, i) => {
+            totalPrice += transaction.price
+            if (!allTransactions[i + 1]) await findOrder.update({ total: totalPrice })
+        })
+    }
 
     res.json({ ok: true, order: await Order.findByPk(req.body.id, { include: ['user', 'repairman', 'transactions'] }) })
 }
