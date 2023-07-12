@@ -24,6 +24,10 @@ const Transaction = db.define("transactions", {
     paid: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
+    },
+
+    authority: {
+        type: DataTypes.TEXT
     }
 })
 

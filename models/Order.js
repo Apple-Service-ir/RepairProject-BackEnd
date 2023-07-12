@@ -74,6 +74,10 @@ const Order = db.define("orders", {
 
   adminMessage: {
     type: DataTypes.TEXT
+  },
+
+  authority: {
+    type: DataTypes.TEXT
   }
 });
 
