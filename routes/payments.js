@@ -7,7 +7,7 @@ const payController = require("../controllers/payments/payController")
 Router.post("/pay", isUserLoggedIn, payController.post)
 
 const verifyController = require("../controllers/payments/verifyController")
-Router.get("/verify", isUserLoggedIn, verifyController.get)
+Router.post("/verify", verifyController.post)
 
 const unverifiedTransactions = require("../controllers/payments/unverifiedController")
 Router.get("/unverified", isUserLoggedIn, unverifiedTransactions.get)
