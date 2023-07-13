@@ -8,7 +8,7 @@ const post = async (req, res) => {
     const findOrder = await Order.findByPk(req.body.id, { include: ['user'] })
     if (!findOrder) return res.status(400).json({ ok: false, err: "order undefined" })
 
-    if (findOrder.userId == req.user.id) return res.status(403).json({ ok: false, err: "شما دسترسی کافی برای ویرایش سفارش خود ندارید." })
+    if (findOrder.userId == req.user.id) return res.status(403).json({ ok: false, err: "شما دسترسی برای ایجاد تغییر در سفارش خود ندارید." })
 
     if (!['pending', 'working', 'done', 'cancelled'].includes(req.body.status)) return res.status(400).json({ ok: false, err: "bad status" })
 
