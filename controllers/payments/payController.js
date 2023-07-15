@@ -14,7 +14,7 @@ const post = async (req, res) => {
 
     zarinpal.PaymentRequest({
         Amount: amount,
-        CallbackURL: `http://192.168.1.138:5173/payments/done`,
+        CallbackURL: `${config.mainURL}/payments/done`,
         Description: `تعمیر ${findOrder.phoneName}`,
         Email: "",
         Mobile: findOrder.user.phone
