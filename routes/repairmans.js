@@ -1,5 +1,5 @@
 let { Router } = require("express")
-const { isUserRepairman, isUserLoggedIn } = require("../helpers/jwtAuth")
+const { isUserRepairman, isUserLoggedIn, isUserAdmin } = require("../helpers/jwtAuth")
 
 Router = new Router()
 
@@ -17,5 +17,8 @@ Router.post("/orders/done", isUserLoggedIn, isUserRepairman, doneOrderController
 
 const setPriceControlller = require("../controllers/repairmans/setPriceController")
 Router.post("/orders/price/set", isUserLoggedIn, isUserRepairman, setPriceControlller.post)
+
+const getRepairmansController = require("../controllers/repairmans/getRepairmansController")
+Router.get("/all", isUserLoggedIn, isUserAdmin, getRepairmansController.get)
 
 module.exports = Router
