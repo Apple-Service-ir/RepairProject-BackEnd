@@ -31,4 +31,6 @@ const Transaction = db.define("transactions", {
     }
 })
 
+Transaction.sync()
+
 module.exports = Transaction
