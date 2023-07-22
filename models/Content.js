@@ -21,6 +21,4 @@ const Content = db.define("contents", {
   }
 });
 
-Content.sync()
-
 module.exports = Content;

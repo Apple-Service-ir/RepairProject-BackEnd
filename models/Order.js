@@ -1,6 +1,9 @@
 const { DataTypes } = require("sequelize");
 const db = require("../configs/db");
 
+const User = require("./User")
+const Transactions = require("./Transaction")
+
 const Order = db.define("orders", {
   id: {
     type: DataTypes.INTEGER,
@@ -80,71 +83,6 @@ const Order = db.define("orders", {
     type: DataTypes.TEXT
   }
 });
-
-const User = db.define("users", {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-
-  firstName: {
-    type: DataTypes.STRING,
-  },
-
-  lastName: {
-    type: DataTypes.STRING,
-  },
-
-  role: {
-    type: DataTypes.STRING,
-    defaultValue: "user"
-  },
-
-  city: {
-    type: DataTypes.STRING,
-  },
-
-  phone: {
-    type: DataTypes.STRING,
-  },
-
-  profile: {
-    type: DataTypes.STRING,
-  },
-
-  session: {
-    type: DataTypes.TEXT
-  }
-})
-
-const Transactions = db.define("transactions", {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true
-  },
-
-  price: {
-    type: DataTypes.INTEGER
-  },
-
-  orderId: {
-    type: DataTypes.INTEGER
-  },
-
-  status: {
-    type: DataTypes.TEXT,
-    defaultValue: "pending"
-  },
-
-  paid: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false
-  }
-})
-
-Order.sync()
 
 User.hasMany(Order, { as: "user" })
 Order.belongsTo(User, {

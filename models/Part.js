@@ -13,6 +13,4 @@ const Part = db.define("parts", {
   },
 })
 
-Part.sync()
-
 module.exports = Part

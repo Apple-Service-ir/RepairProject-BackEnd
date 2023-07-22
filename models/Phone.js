@@ -17,6 +17,4 @@ const Phone = db.define("phones", {
   }
 })
 
-Phone.sync()
-
 module.exports = Phone

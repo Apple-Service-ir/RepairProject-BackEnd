@@ -30,6 +30,4 @@ Code.findVlidCodes = async (phone) => {
   });
 };
 
-Code.sync()
-
 module.exports = Code;

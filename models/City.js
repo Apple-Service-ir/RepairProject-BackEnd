@@ -13,6 +13,4 @@ const City = db.define("cities", {
     }
 })
 
-City.sync()
-
 module.exports = City

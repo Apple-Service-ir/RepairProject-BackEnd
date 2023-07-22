@@ -13,6 +13,4 @@ const JWTDeny = db.define("jwtdenies", {
     }
 })
 
-JWTDeny.sync()
-
 module.exports = JWTDeny

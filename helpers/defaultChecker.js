@@ -1,28 +1,42 @@
-const User = require("../models/User");
-const City = require("../models/City")
 const config = require("../configs/config.json")
 const bcrypt = require("../helpers/bcrypt")
-const Phone = require("../models/Phone")
-const Part = require("../models/Part")
+
+let allModels = require("../models/allModels")
 
 const defaultChecker = async () => {
   // Check for default admin user
-  await User.sync()
+  allModels = allModels()
+
+  console.log("Syncing")
+
+  await allModels.User.sync()
+  await allModels.Code.sync()
+  await allModels.City.sync()
+  await allModels.Content.sync()
+  await allModels.JWTDeny.sync()
+  await allModels.Part.sync()
+  await allModels.Phone.sync()
+  await allModels.Ticket.sync()
+  await allModels.Order.sync()
+  await allModels.TicketMessage.sync()
+  await allModels.Transaction.sync()
+
   console.log("Checking default user");
-  const result = await User.findAll();
+
+  const result = await allModels.User.findAll();
   if (!result || !result[0]) {
     // No admin (Maybe first time running)
     console.log(
       `--------------------\nDefault user created\n\tUsername : ${config.defaultUsername}\n\tPassword : ${config.defaultPassword}\n--------------------`
     );
 
-    await User.create({
+    await allModels.User.create({
       username: config.defaultUsername,
       password: await bcrypt.encrypt(config.defaultPassword),
       role: config.defaultRank,
     });
 
-    await City.bulkCreate([
+    await allModels.City.bulkCreate([
       { name: "نیشابور" },
       { name: "مشهد" },
       { name: "تهران" },
@@ -30,7 +44,7 @@ const defaultChecker = async () => {
       { name: "اصفهان" }
     ])
 
-    await Phone.bulkCreate([
+    await allModels.Phone.bulkCreate([
       { brand: "iPhone", model: "14 ProMax" },
       { brand: "iPhone", model: "14 Pro" },
       { brand: "iPhone", model: "14 Plus" },
@@ -65,7 +79,7 @@ const defaultChecker = async () => {
       { brand: "iPhone", model: "5c" },
     ])
 
-    await Part.bulkCreate([
+    await allModels.Part.bulkCreate([
       { name: "LCD - نمایشگر" },
       { name: "Battery - باتری" },
       { name: "Frame - فریم" },

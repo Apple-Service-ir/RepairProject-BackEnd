@@ -25,6 +25,4 @@ const TicketMessage = db.define("ticketMessages", {
     }
 })
 
-TicketMessage.sync()
-
 module.exports = TicketMessage
