@@ -22,7 +22,7 @@ const post = async (req, res) => {
         return res.status(401).json({ ok: false, err: "unknown status [you can just use payment-working status]" })
 
     await findOrder.update({ status, repairmanId: req.user.id })
-    await Transaction.create({ price: req.body.price, orderId: findOrder.id, status: "pending" })
+    req.body.status.startsWith("payment-") && await Transaction.create({ price: req.body.price, orderId: findOrder.id, status: "pending" })
 
     sms.send(`${findOrder.user.firstName};${findOrder.id}`, findOrder.user.phone, config.smsOrder)
 
